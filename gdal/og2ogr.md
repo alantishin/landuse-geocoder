@@ -1,0 +1,1 @@
+ogr2ogr -progress -append -update -skipfailures -nlt MULTIPOLYGON -f 'PostgreSQL' PG:"host=db user=root password=qwerty dbname=root" -nln public.landuse  data/gis_osm_landuse_a_free_1.shp

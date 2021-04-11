@@ -1,0 +1,47 @@
+version: '2.4'
+services:
+
+    app:
+        build:
+            context: ./app
+            dockerfile: Dockerfile
+            target: dev
+        volumes:
+            - ./app:/home/node/app
+            - /home/node/app/node_modules
+        environment:
+            - POSTGRES_HOST=db
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=qwerty
+            - POSTGRES_DB=root
+        ports:
+            - 3000:3000
+
+    db:
+        image: postgis/postgis
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U root"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        volumes:
+            - ./data/db:/var/lib/postgresql/data
+            - ./data/db-export:/home
+        environment:
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=qwerty
+            - POSTGRES_DB=root
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        ports:
+            - 5432:5432
+        command: postgres
+
+    gdal:
+        build:
+            context: ./gdal
+            dockerfile: Dockerfile
+        command: bash
+        tty: true
+        stdin_open: true
+        volumes:
+            - ./gdal:/home/app
