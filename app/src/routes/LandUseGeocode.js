@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
         let result = null
         if(data.rows) {
             result = {
-                class: _get(data.rows, '0.fclass'),
+                fclass: _get(data.rows, '0.fclass'),
                 name: _get(data.rows, '0.name')
             }
         }

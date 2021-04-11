@@ -1,13 +1,18 @@
 # landuse-geocoder
-Returns info about territory using OSM data
+Returns info about territory. Using OSM data
 
 ## Import data
 ### Download OSM data shapefiles
     http://download.geofabrik.de/
 
 ### Import shapefiles into postgre database using gdal
+#### Put shapefiles to gdal data volume
 
     ogr2ogr -progress -append -update -skipfailures -nlt MULTIPOLYGON -f 'PostgreSQL' PG:"host=db user=root password=qwerty dbname=root" -nln public.landuse  data/gis_osm_landuse_a_free_1.shp
+
+#### Reccomended shp files
+- gis_osm_landuse_a_free_1.shp
+- gis_osm_places_a_free_1.shp
 
 ## API
 ### Get landuse info
@@ -16,7 +21,7 @@ Returns info about territory using OSM data
 #### Answer
     {
         "result": {
-            "class": "farmland",
+            "fclass": "farmland",
             "name": null
         },
         "items": [
