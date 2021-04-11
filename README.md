@@ -10,7 +10,7 @@ Returns info about territory. Using OSM data
 
     ogr2ogr -progress -append -update -skipfailures -nlt MULTIPOLYGON -f 'PostgreSQL' PG:"host=db user=root password=qwerty dbname=root" -nln public.landuse  data/gis_osm_landuse_a_free_1.shp
 
-#### Reccomended shp files
+#### Recommend shp files
 - gis_osm_landuse_a_free_1.shp
 - gis_osm_places_a_free_1.shp
 
