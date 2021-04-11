@@ -6,7 +6,7 @@ Returns info about territory. Using OSM data
     http://download.geofabrik.de/
 
 ### Import shapefiles into postgre database using gdal
-#### Put shapefiles to gdal data volume
+#### Put shapefiles to gdal data volume and run import to database command
 
     ogr2ogr -progress -append -update -skipfailures -nlt MULTIPOLYGON -f 'PostgreSQL' PG:"host=db user=root password=qwerty dbname=root" -nln public.landuse  data/gis_osm_landuse_a_free_1.shp
 
